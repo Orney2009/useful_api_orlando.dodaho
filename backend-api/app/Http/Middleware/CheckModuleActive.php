@@ -17,13 +17,14 @@ class CheckModuleActive
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!User_module::where('active')) {
-            
-            return response()->json([
-                "error" =>"Module inactive. Please activate this module to use it."            
-            ], 403);
+        /* dd($request); */
+            /* if (User_module::where([["user_id", "=", $request->id], ["module_id", "=", ]]'active')) {
+                
+                return response()->json([
+                    "error" =>"Module inactive. Please activate this module to use it."            
+                ], 403);
 
-        }
+            } */
 
         return $next($request);        
     }

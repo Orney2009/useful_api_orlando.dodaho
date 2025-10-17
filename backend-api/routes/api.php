@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth:sanctum', 'api']], function(){
         Route::post("/shorten", [UrlShortenerController::class, "store"]);
         Route::get("/links", [UrlShortenerController::class, "index"]);        
         Route::delete("/links/{id}", [UrlShortenerController::class, "destroy"]);
-    });
+    })->prefix("1");
 
 });
 

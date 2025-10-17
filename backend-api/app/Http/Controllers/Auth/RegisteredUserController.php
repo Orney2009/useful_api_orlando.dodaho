@@ -22,7 +22,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {   
         try{
-
+            
             $validated = $request->validate([
                 'name' => 'required|string',
                 'email' => 'required|string|lowercase|email|unique:users',
@@ -40,9 +40,9 @@ class RegisteredUserController extends Controller
             'password' => Hash::make(str($validated['password'])),
         ]);
         
-        event(new Registered($user));
+        /* event(new Registered($user));
 
-        Auth::login($user);        
+        Auth::login($user); */        
     
         return response()->json([
             $user        
