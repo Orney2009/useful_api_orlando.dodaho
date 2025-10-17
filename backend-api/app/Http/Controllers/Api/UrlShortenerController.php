@@ -28,7 +28,7 @@ class UrlShortenerController extends Controller
         try {
             $validated = $request->validate([
                 'original_url' => 'required|string',
-                'custom_code' => 'string|max:10|unique:urlshortener',
+                'custom_code' => 'string|max:10|unique:urlshortener|nullable',
             ]);
             if (!Str::isUrl($validated['original_url'])) {
                 throw ValidationException::withMessages(['original_url' => 'This value is must be a valid url']);

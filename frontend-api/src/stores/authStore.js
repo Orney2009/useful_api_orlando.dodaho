@@ -1,12 +1,8 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useAuthStore = defineStore('authStore', () => {
-  const count = ref(0)
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
-  }
+export const useAuthStore = defineStore('authStore', () => {  
+  const token = ref("")
   async function registration(data) {
     if (!(data.value.name.trim() || data.value.email.trim() || data.value.password.trim())) {
       return
@@ -63,13 +59,15 @@ export const useAuthStore = defineStore('authStore', () => {
       
       if (response.status == 200) {
         const result = await response.json();        
-        const token =  result.token        
-        localStorage.setItem("token", token)
+        token.value =  result.token        
       }
     } catch (error) {
       return error
     }
   }
 
-  return { count, doubleCount, increment, registration, login }
+  return { registration, login }
+},
+{
+    persist:true
 })
